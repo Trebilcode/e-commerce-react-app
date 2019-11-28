@@ -9,7 +9,7 @@ $main-color: black;
 
 .group {
   position: relative;
-  margin: 45px 0;
+  margin: 45px 23px 45px 0;
 
   .form-input {
     background: none;
@@ -26,6 +26,9 @@ $main-color: black;
 
     &:focus {
       outline: none;
+      background-color: rgb(71, 61, 163);
+      opacity: 0.2;
+
     }
 
     &:focus ~ .form-input-label {
