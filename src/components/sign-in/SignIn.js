@@ -50,7 +50,7 @@ class SignIn extends Component {
         required
           />
         
-        <div className='button'>
+        <div className='buttons'>
           <Custombutton
           type='submit'
           >
