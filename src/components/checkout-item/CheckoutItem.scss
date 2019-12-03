@@ -17,17 +17,34 @@
     }
   }
   .name,
-  .quantity,
+  .quantity, 
   .price {
     width: 23%;
+    
   }
 
   .quantity {
-    padding-left: 20px;
+    display: flex;
+    margin-left: 15px;
+
+    .arrow {
+      display: flex;
+      cursor: pointer;
+      margin: 0 10px;
+
+      .value {
+        margin: 0 10px;
+      }
+    }
+  
+  }
+
+  .price {
+    margin-left: 20px;
   }
 
   .remove-button {
-    padding-left: 12px;
+    padding-right: 15px;
     cursor: pointer;
   }
 }
