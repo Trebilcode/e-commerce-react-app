@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
 
 import './App.css';
 import { HomePage } from './pages/homepage/HomePage';
@@ -9,7 +11,6 @@ import Header from './components/header/Header';
 import SignInSignUp from './pages/sign-in-sign-up/SignInSignUp';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/user.actions';
-import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/user/user.selector';
 import Checkout from './pages/checkout/Checkout';
 
