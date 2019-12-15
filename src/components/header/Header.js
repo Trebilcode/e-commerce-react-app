@@ -1,7 +1,6 @@
 import React from 'react';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
-import { auth } from 'firebase';
 
 
 import { ReactComponent as Logo } from '../../assets/crown-svg/crown.svg';
@@ -10,10 +9,11 @@ import CartDropdown from '../cart-dropdown/CartDropdown';
 import { selectCurrentUser } from '../../redux/user/user.selector';
 import { selectCartHidden } from '../../redux/cart/cart.selector';
 import { LogoContainer, OptionsContainer, OptionLink, HeaderContainer } from './Header.styles';
+import { signOutStart } from '../../redux/user/user.actions';
 
 
 
-const Header = ({ currentUser, hidden }) => (
+const Header = ({ currentUser, hidden, signOutStart }) => (
   <HeaderContainer>
     <LogoContainer  to='/'>
       <Logo className='logo' />  
@@ -29,7 +29,7 @@ const Header = ({ currentUser, hidden }) => (
       </OptionLink> 
       {
         currentUser ?
-          <OptionLink as='div' onClick={() => auth().signOut()}>SIGN OUT</OptionLink> :
+          <OptionLink as='div' onClick={signOutStart}>SIGN OUT</OptionLink> :
           <OptionLink  to='/signin'>SIGN IN</OptionLink>
       }
       <CartIcon />
@@ -47,6 +47,8 @@ const mapStateToProps = createStructuredSelector({
 });
   
 
+const mapDispatchToProps = dispatch => ({
+  signOutStart: () => dispatch(signOutStart())
+})
 
-
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
