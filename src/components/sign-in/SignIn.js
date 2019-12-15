@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 
@@ -8,55 +8,46 @@ import Custombutton from '../custom-button/CustomButton';
 import { googleSignInStart, emailSignInStart } from '../../redux/user/user.actions';
 
 
-class SignIn extends Component {
+const SignIn = ({ emailSignInStart, googleSignInStart }) => {
 
-  state = {
-    email: '',
-    password: ''
-  }
+  const [ userCredentials, setUserCredentials] = useState({ email: '', password:'' });
 
-  handleSubmit = async e => {
+  const { email, password} = userCredentials;
+
+  const handleSubmit = async e => {
     e.preventDefault();
-    
-    const { emailSignInStart } = this.props;
-    const { email, password} = this.state;
-
     emailSignInStart(email, password);   
   }
 
-  handleChange = e => {
+  const handleChange = e => {
     const { value, name } = e.target;
     
-    this.setState({ [name] : value});
+    setUserCredentials({...userCredentials, [name] : value});
   }
-
-  render() {
-
-    const { googleSignInStart } = this.props;
-
-    return (
+  
+  return (
 
       <div className='sign-in'>
         <h2>I already have an account</h2>
         <span>Sign in with your email and password</span>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={handleSubmit}>
 
         <FormInput
-        onChange={this.handleChange} 
+        onChange={handleChange} 
         label='email'
         type='email'
         name='email' 
-        value={this.state.email}
+        value={email}
         
         required
         />
         
         <FormInput
-        onChange={this.handleChange}
+        onChange={handleChange}
         label='password'
         name='password'
         type='password'
-        value={this.state.password}
+        value={password}
         required
           />
         
@@ -80,7 +71,7 @@ class SignIn extends Component {
 
     );
   }
-}
+
 
 const mapDispatchToProps = dispatch => ({
   googleSignInStart: () => dispatch(googleSignInStart()),
