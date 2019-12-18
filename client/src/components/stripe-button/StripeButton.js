@@ -29,7 +29,7 @@ const StripeCheckoutButton = ({ price }) => {
     <StripeCheckout
     locale='en'
     label='Pay Now'
-    name='Clothing ltd'
+    name='Trebilcode Clothing ltd'
     billingAddress
     shippingAddress
     image='https://svgshare.com/i/CUz.svg'
